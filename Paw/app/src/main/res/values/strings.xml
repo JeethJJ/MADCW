@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Paw</string>
+    <string name="logo_desc">logo of the app</string>
+    <string name="timer">Timer</string>
+    <string name="identify_the_breed">Identify the Breed</string>
+    <string name="identify_the_dog">Identify the Dog</string>
+    <string name="search_dog_breed">Search Dog Breed</string>
+    <string-array name="breed_names">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+    </string-array>
+</resources>
