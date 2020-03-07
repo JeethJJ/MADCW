@@ -4,17 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4AF106"
-    tools:context=".correct_choice">
+    android:background="#8BD86D"
+    tools:context=".CorrectChoice">
 
     <TextView
         android:id="@+id/correct_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
         android:text="Correct"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="#037919"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="251dp"
+        android:layout_height="302dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/right" />
+
+    <Button
+        android:id="@+id/correct_next"
+        style="@style/TextAppearance.AppCompat.Widget.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="OK"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+<!--        style="@style/Widget.MaterialComponents.Button.TextButton"-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

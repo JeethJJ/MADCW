@@ -6,9 +6,29 @@
     <string name="identify_the_dog">Identify the Dog</string>
     <string name="search_dog_breed">Search Dog Breed</string>
     <string-array name="breed_names">
-        <item>A</item>
-        <item>B</item>
-        <item>C</item>
-        <item>D</item>
+        <item>Afghan Hound</item>
+        <item>Briard</item>
+        <item>Bull Mastiff</item>
+        <item>Chow</item>
+        <item>Collie</item>
+        <item>Eskimo</item>
+        <item>French Bulldog</item>
+        <item>Goldern Retriever</item>
+        <item>German Shepherd</item>
+        <item>Japanese Spaniel</item>
+        <item>Komondor</item>
+        <item>Labrador Retriever</item>
+        <item>Malamute</item>
+        <item>Malinois</item>
+        <item>Norwegian Elkhound</item>
+        <item>Papillon</item>
+        <item>Pembroke</item>
+        <item>Pomeranian</item>
+        <item>Pug</item>
+        <item>Samoyed</item>
+        <item>Siberian Husky</item>
+        <item>Shetland Sheepdog</item>
+        <item>Sussex Spaniel</item>
+        <item>White Terrier</item>
     </string-array>
 </resources>

@@ -19,13 +19,15 @@
         app:srcCompat="@mipmap/logo" />
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/timer_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
+        android:shadowColor="#FF3D00"
         android:text="@string/timer"
+        android:textColorHighlight="#FF3D00"
         android:textColorLink="@android:color/holo_orange_dark"
         android:textCursorDrawable="@android:color/holo_orange_dark"
         app:layout_constraintEnd_toEndOf="parent"
