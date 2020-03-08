@@ -5,6 +5,27 @@
     <string name="identify_the_breed">Identify the Breed</string>
     <string name="identify_the_dog">Identify the Dog</string>
     <string name="search_dog_breed">Search Dog Breed</string>
+    <string name="ok">OK</string>
+    <string name="correct">Correct</string>
+    <string name="correct_image">correct image</string>
+    <string name="logo">logo</string>
+    <string name="background_image">background_image</string>
+    <string name="wrong_image">wrong_image</string>
+    <string name="wrong">Wrong</string>
+    <string name="correct_answer_image">correct_answer_image</string>
+    <string name="correct_image_text">Correct Image</string>
+    <string name="image_of_a_dog">Image of a dog</string>
+    <string name="select_image_text">Select the breed this picture belongs to..</string>
+    <string name="submit">SUBMIT</string>
+    <string name="identify_the_dog_text">Identify the dog belongs to this breed</string>
+    <string name="imageoption_1">imageOption 1</string>
+    <string name="imageoption_2">imageOption 2</string>
+    <string name="imageoption_3">imageOption 3</string>
+    <string name="enter_name_text">Enter the breed name you want to search for :</string>
+    <string name="breed_name">Breed Name</string>
+    <string name="stop">STOP</string>
+    <string name="grade">grade</string>
+    <string name="wromg_answer_image">wrong answer image</string>
     <string-array name="breed_names">
         <item>Afghan Hound</item>
         <item>Briard</item>

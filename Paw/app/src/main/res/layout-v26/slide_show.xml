@@ -11,11 +11,11 @@
         android:id="@+id/enterBreed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:text="@string/enter_name_text"
+        android:textColor="#000000"
         android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,49 +23,48 @@
         android:id="@+id/breed_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="52dp"
-        android:layout_marginRight="52dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="@string/breed_name"
         android:inputType="textPersonName"
         android:textColor="#000000"
-        app:layout_constraintBaseline_toBaselineOf="@+id/enterBreed"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:autofillHints="" tools:targetApi="o"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterBreed"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/breed_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginRight="52dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginRight="45dp"
         android:onClick="submitCLicked"
         android:text="@string/submit"
         android:background="@drawable/curved_button_2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/breed_name" />
+        app:layout_constraintTop_toTopOf="@+id/breed_name" />
 
     <ViewFlipper
         android:id="@+id/slideshow_image"
-        android:layout_width="255dp"
-        android:layout_height="231dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginLeft="70dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="368dp"
+        android:layout_height="368dp"
+        android:layout_marginTop="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterBreed" />
+        app:layout_constraintTop_toBottomOf="@+id/breed_name" />
 
     <Button
         android:id="@+id/stop_slideshow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="52dp"
-        android:layout_marginRight="52dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="60dp"
         android:onClick="stopClick"
-        android:text="@string/stop"
         android:background="@drawable/curved_button_2"
+        android:text="@string/stop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

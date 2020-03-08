@@ -11,7 +11,7 @@
         android:id="@+id/wrongText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Wrong"
+        android:text="@string/wrong"
         android:textColor="#8F0202"
         android:textSize="36sp"
         android:textStyle="bold"
@@ -26,6 +26,7 @@
         android:layout_width="194dp"
         android:layout_height="207dp"
         android:layout_marginBottom="200dp"
+        android:contentDescription="@string/wrong_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -53,7 +54,8 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginBottom="32dp"
-        android:text="OK"
+        android:text="@string/ok"
+        android:background="@drawable/curved_button_3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

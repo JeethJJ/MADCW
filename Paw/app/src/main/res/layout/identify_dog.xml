@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IdentifyDog">
+    tools:context=".IdentifyDog"
+    android:background="@drawable/bg">
 
     <TextView
         android:id="@+id/breed_find_text "
@@ -13,7 +14,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="16dp"
-        android:text="Identify the dog belongs to this breed"
+        android:text="@string/identify_the_dog_text"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,17 +40,19 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="70dp"
+        android:contentDescription="@string/imageoption_1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/breedName"/>
+        app:layout_constraintTop_toBottomOf="@+id/breedName" />
 
     <ImageView
         android:id="@+id/select_image3"
         android:layout_width="168dp"
         android:layout_height="155dp"
         android:layout_marginTop="24dp"
+        android:contentDescription="@string/imageoption_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/select_image2"/>
+        app:layout_constraintTop_toBottomOf="@+id/select_image2" />
 
     <ImageView
         android:id="@+id/select_image2"
@@ -58,8 +61,9 @@
         android:layout_marginTop="70dp"
         android:layout_marginEnd="28dp"
         android:layout_marginRight="28dp"
+        android:contentDescription="@string/imageoption_3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/breedName"/>
+        app:layout_constraintTop_toBottomOf="@+id/breedName" />
 
     <Button
         android:id="@+id/image_submit"
@@ -69,7 +73,8 @@
         android:layout_marginRight="32dp"
         android:layout_marginBottom="32dp"
         android:onClick="clickSubmit"
-        android:text="Submit"
+        android:text="@string/submit"
+        android:background="@drawable/curved_button_2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

@@ -7,7 +7,7 @@ import android.os.Handler;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int REDIRECT_TIME = 2000;
+    private static final int REDIRECT_TIME = 2000;  // this activity will be shown only for two seconds end it will be redirected automatically to the homepage
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

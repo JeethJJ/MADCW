@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SlideShow">
+    tools:context=".SlideShow"
+    android:background="@drawable/bg">
 
     <TextView
         android:id="@+id/enterBreed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Enter the breed name you want to search for :"
+        android:text="@string/enter_name_text"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,11 +27,12 @@
         android:layout_marginLeft="45dp"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:hint="Breed Name"
+        android:hint="@string/breed_name"
         android:inputType="textPersonName"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterBreed" />
+        app:layout_constraintTop_toBottomOf="@+id/enterBreed"
+        android:autofillHints="" tools:targetApi="o"/>
 
     <Button
         android:id="@+id/breed_submit"
@@ -39,7 +41,8 @@
         android:layout_marginEnd="45dp"
         android:layout_marginRight="45dp"
         android:onClick="submitCLicked"
-        android:text="SUBMIT"
+        android:text="@string/submit"
+        android:background="@drawable/curved_button_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/breed_name" />
 
@@ -60,7 +63,8 @@
         android:layout_marginRight="30dp"
         android:layout_marginBottom="60dp"
         android:onClick="stopClick"
-        android:text="STOP"
+        android:background="@drawable/curved_button_2"
+        android:text="@string/stop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

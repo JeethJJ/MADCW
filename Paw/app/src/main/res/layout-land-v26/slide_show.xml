@@ -31,7 +31,7 @@
         android:textColor="#000000"
         app:layout_constraintBaseline_toBaselineOf="@+id/enterBreed"
         app:layout_constraintEnd_toEndOf="parent"
-        android:autofillHints="" tools:targetApi="o"/>
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/breed_submit"

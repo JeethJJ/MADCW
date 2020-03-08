@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IdentifyDog">
+    tools:context=".IdentifyDog"
+    android:background="@drawable/bg">
 
     <ProgressBar
         android:id="@+id/progressBar2"
@@ -24,7 +25,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="8dp"
-        android:text="Identify the dog belongs to this breed"
+        android:text="@string/identify_the_dog_text"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,14 +52,16 @@
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="30dp"
+        android:contentDescription="@string/imageoption_1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/breedName"/>
+        app:layout_constraintTop_toBottomOf="@+id/breedName" />
 
     <ImageView
         android:id="@+id/select_image3"
         android:layout_width="168dp"
         android:layout_height="155dp"
         android:layout_marginTop="30dp"
+        android:contentDescription="@string/imageoption_2"
         app:layout_constraintEnd_toStartOf="@+id/select_image2"
         app:layout_constraintStart_toEndOf="@+id/select_image1"
         app:layout_constraintTop_toBottomOf="@+id/breedName" />
@@ -70,6 +73,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="50dp"
         android:layout_marginRight="50dp"
+        android:contentDescription="@string/imageoption_3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/breedName" />
 
@@ -81,7 +85,8 @@
         android:layout_marginRight="50dp"
         android:layout_marginBottom="8dp"
         android:onClick="clickSubmit"
-        android:text="Submit"
+        android:text="@string/submit"
+        android:background="@drawable/curved_button_2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

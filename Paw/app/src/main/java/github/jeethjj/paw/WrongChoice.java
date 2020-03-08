@@ -18,8 +18,8 @@ public class WrongChoice extends AppCompatActivity {
 
         Intent intent = getIntent();
         String message = intent.getStringExtra(IdentifyBreed.EXTRA_MESSAGE);
-        TextView textView = findViewById(R.id.correct_answer_disp);
-        textView.setText(message);
+        TextView textView = findViewById(R.id.correct_answer_disp);    // get the correct answer which was past as an extra from the previous activity
+        textView.setText(message);  // Setting the correct answer to the text View
 
         DisplayMetrics displayMatrics = new DisplayMetrics();      //hetting details of current display
         getWindowManager().getDefaultDisplay().getMetrics(displayMatrics);

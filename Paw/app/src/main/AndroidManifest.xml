@@ -10,8 +10,11 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".GameGrade"></activity>
+        tools:ignore="GoogleAppIndexingWarning"
+        android:hardwareAccelerated="false">
+        <activity android:name=".GameGrade"
+
+            android:parentActivityName=".Home" />
         <activity
             android:name=".WrongChoiceImage"
             android:theme="@style/AppTheme.popup" />

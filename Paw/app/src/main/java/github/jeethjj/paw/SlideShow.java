@@ -50,7 +50,7 @@ public class SlideShow extends AppCompatActivity {
     int stopFlip=0;
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(Bundle outState) {    // save the instance for orientation changes
         super.onSaveInstanceState(outState);
         outState.putInt("stopFlip",stopFlip);
         outState.putInt("images",images);
@@ -64,7 +64,7 @@ public class SlideShow extends AppCompatActivity {
         vf=findViewById(R.id.slideshow_image);
         breedName = findViewById(R.id.breed_name);
         submit=findViewById(R.id.breed_submit);
-        if(savedInstanceState!= null){
+        if(savedInstanceState!= null){  // is the orientation is changed it should start from where it stopped
             this.images = savedInstanceState.getInt("images");
             this.stopFlip = savedInstanceState.getInt("stopFlip");
             this.orientationChangeCheck = savedInstanceState.getInt("orientation");
@@ -92,7 +92,7 @@ public class SlideShow extends AppCompatActivity {
 
     }
 
-    private void flipImage(int image){
+    private void flipImage(int image){    // each image will be flipped five seconds, and all images Will be looped through until the stop button is clicked
         ImageView iv = new ImageView(this);
         iv.setImageResource(image);
 
@@ -105,7 +105,7 @@ public class SlideShow extends AppCompatActivity {
         vf.setOutAnimation(this,R.anim.fade_in);
     }
 
-    private int getBreed(String breed){
+    private int getBreed(String breed){   // this will return the starting index of the breed that the user is searching for
         int numStart = -1;
 
         if(breed.equals("afghan hound")){
@@ -160,11 +160,11 @@ public class SlideShow extends AppCompatActivity {
         return numStart;
     }
 
-    public void submitCLicked(View view) {
+    public void submitCLicked(View view) {  // when the submit button is clicked
         vf.setVisibility(View.VISIBLE);
-        String name = breedName.getText().toString().toLowerCase();
+        String name = breedName.getText().toString().toLowerCase();  // the users input text will be get
         Log.i("name",name);
-        images=getBreed(name);
+        images=getBreed(name); // check with the breed that the user input is there
         if(images==-1){
             Toast.makeText(getApplicationContext(), "No such breed found !!!", Toast.LENGTH_SHORT).show();
             vf.setVisibility(View.INVISIBLE);
@@ -188,16 +188,15 @@ public class SlideShow extends AppCompatActivity {
         }
     }
 
-    public void stopClick(View view) {
+    public void stopClick(View view) {     // when the stop button is clicked, the image flipping will be stopped
         vf.stopFlipping();
-//                vf.setVisibility(View.INVISIBLE);
-//                submit.setEnabled(true);
-//                breedName.setEnabled(true);
-//                for(int i=0;i<10;i++){
-//                    images_to_view=new int[10];
-//                }
         stopFlip=1;
         Intent intent = new Intent(SlideShow.this, SlideShow.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {    // the android back button is blocked, and the only way back is through the parent element back button
+        Toast.makeText(getApplicationContext(), "Click the back button on top left to EXIT!!", Toast.LENGTH_SHORT).show();
     }
 }

@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IdentifyBreed">
+    tools:context=".IdentifyBreed"
+    android:background="@drawable/bg">
 
     <ImageView
         android:id="@+id/identify_breed_image_view"
         android:layout_width="400dp"
         android:layout_height="400dp"
         android:layout_marginTop="32dp"
-        android:contentDescription="Image of a god"
+        android:contentDescription="@string/image_of_a_dog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/select_breed_text" />
@@ -23,7 +24,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:text="Select the breed this picture belongs to.."
+        android:text="@string/select_image_text"
         android:textColor="#0A0300"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -38,9 +39,10 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:onClick="clickSubmit"
-        android:text="SUBMIT"
+        android:text="@string/submit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/curved_button_2"/>
 
     <Spinner
         android:id="@+id/selected_breed"

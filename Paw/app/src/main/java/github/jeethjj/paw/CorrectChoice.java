@@ -15,7 +15,7 @@ public class CorrectChoice extends AppCompatActivity {
         setContentView(R.layout.activity_correct_choice);
 
         DisplayMetrics displayMatrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMatrics);
+        getWindowManager().getDefaultDisplay().getMetrics(displayMatrics);  //get details of the display to make the size of the activity smaller
 
         int width = displayMatrics.widthPixels;
         int height = displayMatrics.heightPixels;
@@ -25,7 +25,7 @@ public class CorrectChoice extends AppCompatActivity {
 
 
         final Button identifyTheBreed = findViewById(R.id.correct_next);
-        identifyTheBreed.setOnClickListener(new View.OnClickListener() {
+        identifyTheBreed.setOnClickListener(new View.OnClickListener() {    // this activity should close when the ok button is clicked
             @Override
             public void onClick(View v) {
                 finish();

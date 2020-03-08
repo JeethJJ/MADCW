@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -12,18 +13,15 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.Random;
 
-
-
 public class IdentifyBreed extends AppCompatActivity {
-    public static final ArrayList<Integer> randInts = new ArrayList<>();
-    public static final String EXTRA_MESSAGE = null;
-    public static int marks=0;
-    public static int questions=0;
-    public int dogs[] = {
+    public static final ArrayList<Integer> randInts = new ArrayList<>();  // this area is used to at all the random numbers, so they won't be reused again
+    public static final String EXTRA_MESSAGE = null;  // to pass a message as an extra
+    public static int marks=0;  // this is a static variable so the marks of each game will be stored
+    public static int questions=0;  // this is to keep track of the number of questions the user is attempting
+    public int dogs[] = {      // all the images are in this
             R.drawable.afg1,R.drawable.afg2,R.drawable.afg3,R.drawable.afg4,R.drawable.afg5,R.drawable.afg6,R.drawable.afg7,R.drawable.afg8,R.drawable.afg9,R.drawable.afg10,
             R.drawable.briard1,R.drawable.briard2,R.drawable.briard3,R.drawable.briard4,R.drawable.briard5,R.drawable.briard6,R.drawable.briard7,R.drawable.briard8,R.drawable.briard9,R.drawable.briard10,
             R.drawable.bull1,R.drawable.bull2,R.drawable.bull3,R.drawable.bull4,R.drawable.bull5,R.drawable.bull6,R.drawable.bull7,R.drawable.bull8,R.drawable.bull9,R.drawable.bull10,
@@ -61,9 +59,10 @@ public class IdentifyBreed extends AppCompatActivity {
     String correctBreed;
     boolean finishedYet=false;
     boolean message;
+    String grade;
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(Bundle outState) {  // saving the state for orientation changes
         super.onSaveInstanceState(outState);
         outState.putInt("timerTime",timerTime);
         outState.putInt("randInt",random);
@@ -78,19 +77,23 @@ public class IdentifyBreed extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.identify_breed);
 
+        if(randInts.size()>238){  // there are totaling 240 images so the number of times that the user can attempt it's less than 240
+            finish();
+        }
 
-        message = getIntent().getExtras().getBoolean("switchBool");
+//        questions=questions+1;
+        message = getIntent().getExtras().getBoolean("switchBool");  // to check whether the timer is on or not
 
-        clickedSubmit=false;
-        int x = rand.nextInt(240);
-        while(randInts.contains(x)){
+        clickedSubmit=false; // keep track of whether to submit button is clicked or not
+        int x = rand.nextInt(240);  // each time we should generate a random number and it should not be the same number which was generated before
+        while(randInts.contains(x)){  // using this while loop we check with other random number is already there and we generate a random number which is not there
             x=rand.nextInt(240);
         }
 
         random=x;
-        randInts.add(random);
+        randInts.add(random);  // adding the random number to the array
         timerTime=10000;
-        if(savedInstanceState!= null){
+        if(savedInstanceState!= null){   //if the same instance is not null, so which means the activity is already created before, the activity will be following the previous instance
             this.random = savedInstanceState.getInt("randInt");
             this.timerTime = savedInstanceState.getInt("timerTime");
             this.clickedSubmit=savedInstanceState.getBoolean("submitClicked");
@@ -111,7 +114,7 @@ public class IdentifyBreed extends AppCompatActivity {
             spinner.setAdapter(names);   //adding names array to the spinner
         }
 
-        if(message){
+        if(message){          // the timer should start only if the toggle button is on
             pb.setProgress(timerTime/100);
             myCountDownTimer = new MyCountDownTimer(timerTime, 1000);
             myCountDownTimer.start();
@@ -119,12 +122,14 @@ public class IdentifyBreed extends AppCompatActivity {
             pb.setVisibility(View.INVISIBLE);
         }
 
-        if(clickedSubmit) {
+        if(clickedSubmit) {  // if the user clicks the submit button once the submit text should change into next
             identifyTheBreed.setText("Next");
         }
+
+
     }
 
-    private String getBreed(int num){
+    private String getBreed(int num){   // this method will return the name of the Breed according to the Random number
         String breed;
         if(-1<num && num<10){
             breed="Afghan Hound";
@@ -179,7 +184,7 @@ public class IdentifyBreed extends AppCompatActivity {
     }
 
     public void clickSubmit(View view) {
-        if(message){
+        if(message){      // if the timer is on and the submit button is clicked, the time I should stop
             pb.setProgress(0);
             myCountDownTimer.cancel();
             finishedYet=true;
@@ -187,13 +192,12 @@ public class IdentifyBreed extends AppCompatActivity {
         if(!clickedSubmit) {      //did this to do the thing when orientation changes
             identifyTheBreed.setText("Next");
             String text = spinner.getSelectedItem().toString(); //get the selected item as text
-//            Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();  //showing a toast message
-            if(text.equals(correctBreed)) {
+            if(text.equals(correctBreed)) {  // if they use the selects the correct breed the correct activity will be started
                 startActivity(new Intent(IdentifyBreed.this, CorrectChoice.class));
                 marks=marks+1;
                 questions=questions+1;
                 Toast.makeText(getApplicationContext(), "Marks : "+marks+"/"+questions, Toast.LENGTH_SHORT).show();
-            }else{
+            }else{  // if they use the selects the wrong answer, the wrong breed activity will be starting
                 String message = "Correct answer :" + correctBreed;
                 Intent intent= new Intent(IdentifyBreed.this, WrongChoice.class);
                 intent.putExtra(EXTRA_MESSAGE, message);
@@ -201,31 +205,31 @@ public class IdentifyBreed extends AppCompatActivity {
                 questions=questions+1;
                 Toast.makeText(getApplicationContext(), "Marks : "+marks+"/"+questions, Toast.LENGTH_SHORT).show();
             }
-            overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
+            overridePendingTransition(R.anim.fade_out, R.anim.fade_in);  // animation to the starting and ending of the correct and wrong activities
             clickedSubmit=true;
         }
         else{
-            Intent intent = new Intent(IdentifyBreed.this, IdentifyBreed.class);
+            Intent intent = new Intent(IdentifyBreed.this, IdentifyBreed.class);  // if the same button is clicked again, which means the user wants to go to the next question
             intent.putExtra("switchBool", message);
             clickedSubmit=false;
             startActivity(intent);
         }
     }
 
-    public class MyCountDownTimer extends CountDownTimer {
+    public class MyCountDownTimer extends CountDownTimer {      // this is the timer class which extends from countdown timer
 
         public MyCountDownTimer(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);
         }
 
         @Override
-        public void onTick(long millisUntilFinished) {
+        public void onTick(long millisUntilFinished) {     // I'm each tick, it takes is taken
             timerTime=timerTime-1000;
-            pb.setProgress(timerTime/100);
+            pb.setProgress(timerTime/100);  // progress bar is set to the new value
         }
 
         @Override
-        public void onFinish() {
+        public void onFinish() {  // when the time is finished, answer whatever you say have selected should be evaluated
             pb.setProgress(0);
             timerTime=10000;
 
@@ -237,7 +241,7 @@ public class IdentifyBreed extends AppCompatActivity {
                     startActivity(intent);
                     marks=marks+1;
                     questions=questions+1;
-                    Toast.makeText(getApplicationContext(), "Marks : "+marks+"/"+questions, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Marks : "+marks+"/"+questions, Toast.LENGTH_SHORT).show();  // each time when the user is submitting an answer, the score should be shown
                 }else {
                     String message = "Correct answer :" + correctBreed;
                     Intent intent = new Intent(IdentifyBreed.this, WrongChoice.class);
@@ -250,18 +254,41 @@ public class IdentifyBreed extends AppCompatActivity {
                 clickedSubmit = true;
                 finishedYet=false;
             }
-
         }
-
     }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
-        if (message) {
+        super.onDestroy();     // when the timer didn't start also the ondistroy will be called but it is not initiated!! SO yeah , fix it
+        if (message) {   // the timer should be destroyed when the activity is closed
             myCountDownTimer.cancel();
         }
     }
 
+    @Override
+    public void onBackPressed() { // the android back but it's blocked, Will display the following toast
+        Toast.makeText(getApplicationContext(), "Click the back button on top left to EXIT!!", Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {  // when the use of clicks the back button to go to the parent element, it will check whether to use to have attempted any questions
+        if (item.getItemId() == android.R.id.home && questions > 0) {  // if the user to have attempted any questions Marks and Number of stars Will be shown
+                if (marks == 0) {                                     // if not it will go to the parent activity straightaway
+                    grade = "Low score! Try harder!!";
+                } else if (marks == questions) {
+                    grade = "Great !!!";
+                } else if (marks >= questions / 2) {
+                    grade = "Good !!";
+                } else if (marks <= questions / 2) {
+                    grade = "Better luck next time !";
+                }
+                Intent intent = new Intent(IdentifyBreed.this, GameGrade.class);
+                intent.putExtra("grade", grade);
+                intent.putExtra("questions", questions);
+                intent.putExtra("marks", marks);
+                startActivity(intent);  // the great and the Score and the number of questions are sent to activity which displays the grade
+                return true;
+        }
+        return super.onOptionsItemSelected(item);  // we are sending it to the super class, so it will go to the main page(parent class)
+    }
 }

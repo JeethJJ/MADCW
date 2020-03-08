@@ -16,11 +16,9 @@ public class WrongChoiceImage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wrong_choice_image);
         Intent intent = getIntent();
-//        Bitmap bitmap = intent.getParcelableExtra("BitmapImage");
-        final int path = intent.getIntExtra("imageRef", 0);
+        final int path = intent.getIntExtra("imageRef", 0);  // the correct image is passed from the previous activity as a reference
         ImageView iv = findViewById(R.id.correct_image);
-        //iv.setImageBitmap(BitmapFactory.decodeFile(path));
-        iv.setImageDrawable(getResources().getDrawable(path));
+        iv.setImageDrawable(getResources().getDrawable(path));  // according to the reference the correct image will be set into the image View
 
         DisplayMetrics displayMatrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMatrics);

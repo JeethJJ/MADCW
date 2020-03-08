@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -63,7 +64,7 @@ public class IdentifyDog extends AppCompatActivity {
     String grade;
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(Bundle outState) {  // to see each instance to use when the orientation changes
         super.onSaveInstanceState(outState);
         outState.putInt("a",a);
         outState.putInt("b",b);
@@ -81,8 +82,12 @@ public class IdentifyDog extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.identify_dog);
 
+//        questions=questions+1;
+        if(randInts.size()>238){
+            finish();
+        }
 
-        message = getIntent().getExtras().getBoolean("switchBool");
+        message = getIntent().getExtras().getBoolean("switchBool");  // to check whether the timer is on or not
         a = randInt();
         randInts.add(a);
         b = randInt();
@@ -103,7 +108,7 @@ public class IdentifyDog extends AppCompatActivity {
 //        final Bitmap bitmap;
         timerTime=10000;
 
-        if(savedInstanceState!= null) {
+        if(savedInstanceState!= null) {        // if there is an instance saved, it will save them back
             this.a = savedInstanceState.getInt("a");
             this.b = savedInstanceState.getInt("b");
             this.c = savedInstanceState.getInt("c");
@@ -131,7 +136,7 @@ public class IdentifyDog extends AppCompatActivity {
         v2.setImageResource(dogs[b]);
         v3.setImageResource(dogs[c]);
 
-        v1.setOnClickListener(new View.OnClickListener() {
+        v1.setOnClickListener(new View.OnClickListener() {  // when the image is clicked, the image will be blurred a little bit, so the user can see which image is clicked
             @Override
             public void onClick(View v) {
                 v1.setAlpha(128);     //opacity to 50% for the user to see which one is selected
@@ -163,7 +168,7 @@ public class IdentifyDog extends AppCompatActivity {
         submit = findViewById(R.id.image_submit);
         pb = findViewById(R.id.progressBar2);
 
-        if(message){
+        if(message){  // start the timer if the timer is on
             pb.setProgress(timerTime/100);
             myCountDownTimer = new MyCountDownTimer(timerTime, 1000);
             myCountDownTimer.start();
@@ -176,7 +181,7 @@ public class IdentifyDog extends AppCompatActivity {
         }
     }
 
-    public int randInt(){
+    public int randInt(){    // to generate a random Number which is not used already
         int x = rand.nextInt(240);
 
         while(randInts.contains(x)){
@@ -185,7 +190,7 @@ public class IdentifyDog extends AppCompatActivity {
         return x;
     }
 
-    private String getBreed(int num){
+    private String getBreed(int num){  // this method will return the name of the breed
         String breed;
         if(-1<num && num<10){
             breed="Afghan Hound";
@@ -239,16 +244,16 @@ public class IdentifyDog extends AppCompatActivity {
         return breed;
     }
 
-    public void clickSubmit(View view) {
+    public void clickSubmit(View view) {  //  when the submit button is clicked
 
-        if(message){
+        if(message){  // stop the timer if it is running
             pb.setProgress(0);
             myCountDownTimer.cancel();
             finishedYet=true;
         }
-        if(!clickedSubmit) {
+        if(!clickedSubmit) {  //did this to do the thing when orientation changes
             submit.setText("Next");
-            if (userSelection == correctAnswer){
+            if (userSelection == correctAnswer){     // if the user select the correct answer
                 marks=marks+1;
                 questions=questions+1;
                 startActivity(new Intent(IdentifyDog.this, CorrectChoice.class));
@@ -311,17 +316,36 @@ public class IdentifyDog extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();     // when the timer didnt start also the ondistroy will be called but it is not initiated!! SO yeah , fix it
+        super.onDestroy();     // when the timer didn't start also the ondistroy will be called but it is not initiated!! SO yeah, fix it
         if (message) {
             myCountDownTimer.cancel();
         }
+    }
 
-        if(marks==questions){
-            grade="a";
-        }else if(marks>=questions/2){
-            grade="b";
-        }else if(marks<=questions/2){
-            grade="c";
+    @Override
+    public void onBackPressed() {  // the back button is blocked and it will display the following toast
+        Toast.makeText(getApplicationContext(), "Click the back button on top left to EXIT!!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {  // when the use of clicks the back button to go to the parent element, it will check whether to use to have attempted any questions
+        if (item.getItemId() == android.R.id.home && questions > 0) {  // if the user to have attempted any questions Marks and Number of stars Will be shown
+            if (marks == 0) {                                     // if not it will go to the parent activity straightaway
+                grade = "Low score! Try harder!!";
+            } else if (marks == questions) {
+                grade = "Great !!!";
+            } else if (marks >= questions / 2) {
+                grade = "Good !!";
+            } else if (marks <= questions / 2) {
+                grade = "Better luck next time !";
+            }
+            Intent intent = new Intent(IdentifyDog.this, GameGrade.class);
+            intent.putExtra("grade", grade);
+            intent.putExtra("questions", questions);
+            intent.putExtra("marks", marks);
+            startActivity(intent);  // the great and the Score and the number of questions are sent to activity which displays the grade
+            return true;
         }
+        return super.onOptionsItemSelected(item);  // we are sending it to the super class, so it will go to the main page(parent class)
     }
 }
