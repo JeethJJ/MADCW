@@ -62,6 +62,7 @@ public class IdentifyDog extends AppCompatActivity {
     public static int marks=0;
     public static int questions=0;
     String grade;
+    TextView timeShow;
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {  // to see each instance to use when the orientation changes
@@ -167,9 +168,11 @@ public class IdentifyDog extends AppCompatActivity {
 
         submit = findViewById(R.id.image_submit);
         pb = findViewById(R.id.progressBar2);
+        timeShow=findViewById(R.id.time2);
 
         if(message){  // start the timer if the timer is on
             pb.setProgress(timerTime/100);
+            timeShow.setText(String.valueOf(timerTime/1000));
             myCountDownTimer = new MyCountDownTimer(timerTime, 1000);
             myCountDownTimer.start();
         }else{
@@ -285,26 +288,25 @@ public class IdentifyDog extends AppCompatActivity {
         public void onTick(long millisUntilFinished) {
             timerTime=timerTime-1000;
             pb.setProgress(timerTime/100);
+            timeShow.setText(String.valueOf(timerTime/1000));
         }
 
         @Override
         public void onFinish() {
             pb.setProgress(0);
-            timerTime=10000;
 
             if(!finishedYet) {
+                finishedYet=true;
                 submit.setText("Next");
                 questions = questions + 1;
                 if (userSelection == correctAnswer) {
                     marks = marks + 1;
-                    questions=questions+1;
                     startActivity(new Intent(IdentifyDog.this, CorrectChoice.class));
                     Toast.makeText(getApplicationContext(), "Marks : " + marks + "/" + questions, Toast.LENGTH_SHORT).show();
                 } else {
                     Intent intent = new Intent(IdentifyDog.this, WrongChoiceImage.class);
                     intent.putExtra("imageRef", dogs[correctAnswer]);
                     startActivity(intent);
-                    questions=questions+1;
                     Toast.makeText(getApplicationContext(), "Marks : " + marks + "/" + questions, Toast.LENGTH_SHORT).show();
                 }
                 overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
